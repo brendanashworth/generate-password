@@ -22,7 +22,5 @@
     "url": "https://github.com/boboman13/generate-password/issues"
   },
   "homepage": "https://github.com/boboman13/generate-password",
-  "dependencies": {
-    "clone": "^0.1.16"
-  }
+  "dependencies": {}
 }
