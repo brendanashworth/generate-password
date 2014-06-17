@@ -39,7 +39,7 @@ var passwords = generator.generateMultiple(10, {
 ### Available Options
 Any of these can be passed into the options object for each function.
 |    Name   |                  Description                | Default Value |
-|:---------:|:-------------------------------------------:|:-------------:|
+|-----------|---------------------------------------------|---------------|
 | length    | Integer, length of password.                |       10      |
 | numbers   | Boolean, put numbers in password.           |     false     |
 | symbols   | Boolean, put symbols in password.           |     false     |
