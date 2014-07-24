@@ -1,6 +1,6 @@
 // Generates a random number
 var randomNumber = function(max) {
-	return Math.floor(Math.random() * (max + 1));
+	return Math.floor(Math.random() * max);
 }
 
 // Generate a random password.
