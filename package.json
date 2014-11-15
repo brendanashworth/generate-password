@@ -22,5 +22,10 @@
     "url": "https://github.com/boboman13/generate-password/issues"
   },
   "homepage": "https://github.com/boboman13/generate-password",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.0.1",
+    "underscore": "^1.7.0"
+  }
 }
