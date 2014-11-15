@@ -1,7 +1,8 @@
 Generate Password
 =====
+[![Build Status](https://travis-ci.org/brendanashworth/generate-password.svg?branch=master)](https://travis-ci.org/brendanashworth/generate-password)
 
-![Generate-Password NPM](https://nodei.co/npm/generate-password.png)
+[![Generate-Password NPM](https://nodei.co/npm/generate-password.png)](http://npmjs.org/package/generate-password)
 
 > Generate-Password is a (relatively) extensive library for generating random and unique passwords.
 
