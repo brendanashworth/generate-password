@@ -1,10 +1,12 @@
+var self = module.exports;
+
 // Generates a random number
 var randomNumber = function(max) {
 	return Math.floor(Math.random() * max);
-}
+};
 
 // Generate a random password.
-var generate = function(options) {
+self.generate = function(options) {
 	// Set defaults.
 	if (!options.hasOwnProperty('length')) options.length = 10;
 	if (!options.hasOwnProperty('numbers')) options.numbers = false;
@@ -38,10 +40,10 @@ var generate = function(options) {
 	}
 
 	return password;
-}
+};
 
 // Generates multiple passwords at once with the same options.
-var generateMultiple = function(amount, options) {
+self.generateMultiple = function(amount, options) {
 	var passwords = [];
 
 	for (var i = 0; i < amount; i++) {
@@ -49,9 +51,4 @@ var generateMultiple = function(amount, options) {
 	}
 
 	return passwords;
-}
-
-module.exports = {
-	generate: generate,
-	generateMultiple: generateMultiple
 };
