@@ -4,11 +4,11 @@
   "description": "Easy library for generating unique passwords.",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/boboman13/generate-password"
+    "url": "https://github.com/brendanashworth/generate-password"
   },
   "keywords": [
     "generate",
@@ -16,12 +16,12 @@
     "generator",
     "unique"
   ],
-  "author": "boboman13",
+  "author": "Brendan Ashworth",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/boboman13/generate-password/issues"
+    "url": "https://github.com/brendanashworth/generate-password/issues"
   },
-  "homepage": "https://github.com/boboman13/generate-password",
+  "homepage": "https://github.com/brendanashworth/generate-password",
   "dependencies": {},
   "devDependencies": {
     "chai": "^1.10.0",
