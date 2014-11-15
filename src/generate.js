@@ -1,8 +1,11 @@
+var crypto = require('crypto');
+
 var self = module.exports;
 
 // Generates a random number
 var randomNumber = function(max) {
-	return Math.floor(Math.random() * max);
+	// gives a number between 0 (inclusive) and max (exclusive)
+	return crypto.randomBytes(1)[0] % max;
 };
 
 // Generate a random password.
@@ -47,7 +50,7 @@ self.generateMultiple = function(amount, options) {
 	var passwords = [];
 
 	for (var i = 0; i < amount; i++) {
-		passwords[i] = generate(options);
+		passwords[i] = self.generate(options);
 	}
 
 	return passwords;
