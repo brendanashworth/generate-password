@@ -41,9 +41,10 @@ var passwords = generator.generateMultiple(10, {
 Any of these can be passed into the options object for each function.
 
 
-|    Name   |                  Description                | Default Value |
-|-----------|---------------------------------------------|---------------|
-| length    | Integer, length of password.                |       10      |
-| numbers   | Boolean, put numbers in password.           |     false     |
-| symbols   | Boolean, put symbols in password.           |     false     |
-| uppercase | Boolean, use uppercase letters in password. |      true     |
+|            Name          |                  Description                | Default Value |
+|--------------------------|---------------------------------------------|---------------|
+| length                   | Integer, length of password.                |       10      |
+| numbers                  | Boolean, put numbers in password.           |     false     |
+| symbols                  | Boolean, put symbols in password.           |     false     |
+| uppercase                | Boolean, use uppercase letters in password. |      true     |
+| excludeSimilarCharacters | Excludes similar chars, like 'i' and 'l'.   |     false     |

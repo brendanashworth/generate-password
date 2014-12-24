@@ -1,6 +1,6 @@
 {
   "name": "generate-password",
-  "version": "1.0.2",
+  "version": "1.1.1",
   "description": "Easy library for generating unique passwords.",
   "main": "main.js",
   "scripts": {

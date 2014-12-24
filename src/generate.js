@@ -15,11 +15,13 @@ self.generate = function(options) {
 	if (!options.hasOwnProperty('numbers')) options.numbers = false;
 	if (!options.hasOwnProperty('symbols')) options.symbols = false;
 	if (!options.hasOwnProperty('uppercase')) options.uppercase = true;
+	if (!options.hasOwnProperty('excludeSimilarCharacters')) options.excludeSimilarCharacters = false;
 
 	var lowercase = 'abcdefghijklmnopqrstuvwxyz',
 		uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 		numbers = '0123456789',
-		symbols = '!@#$%^&*()+_-=}{[]|:;"/?.><,`~';
+		symbols = '!@#$%^&*()+_-=}{[]|:;"/?.><,`~',
+		similarCharacters = /[ilLI|`oO0]/g;
 
 	// Generate character pool
 	var pool = lowercase;
@@ -35,6 +37,10 @@ self.generate = function(options) {
 	// symbols
 	if (options.symbols) {
 		pool += symbols;
+	}
+	// similar characters
+	if (options.excludeSimilarCharacters) {
+		pool = pool.replace(similarCharacters, '');
 	}
 
 	var password = '';
