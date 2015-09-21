@@ -16,12 +16,14 @@ self.generate = function(options) {
 	if (!options.hasOwnProperty('symbols')) options.symbols = false;
 	if (!options.hasOwnProperty('uppercase')) options.uppercase = true;
 	if (!options.hasOwnProperty('excludeSimilarCharacters')) options.excludeSimilarCharacters = false;
+	if (!options.hasOwnProperty('repeatCharactersLimit')) options.repeatCharactersLimit = 0;
 
 	var lowercase = 'abcdefghijklmnopqrstuvwxyz',
 		uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 		numbers = '0123456789',
 		symbols = '!@#$%^&*()+_-=}{[]|:;"/?.><,`~',
-		similarCharacters = /[ilLI|`oO0]/g;
+		similarCharacters = /[ilLI|`oO0]/g,
+		repeatingCharacters = options.repeatCharactersLimit ? new RegExp('(.)\\1{' + (options.repeatCharactersLimit) + ',}', 'g') : undefined;
 
 	// Generate character pool
 	var pool = lowercase;
@@ -44,8 +46,11 @@ self.generate = function(options) {
 	}
 
 	var password = '';
-	for (var i = 0; i < options.length; i++) {
+	while (password.length < options.length || (repeatingCharacters && repeatingCharacters.test(password))) {
 		password += pool[randomNumber(pool.length)];
+
+		// remove repeating characters if required
+		if (repeatingCharacters) password = password.replace(repeatingCharacters, '');
 	}
 
 	return password;
