@@ -1,2 +1,10 @@
 /node_modules
 npm-debug.log
+
+# Visual Studio
+# =========
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
