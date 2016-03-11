@@ -12,6 +12,40 @@ describe('generate-password', function() {
 
 			assert.equal(password.length, length);
 		});
+		it('should generate strict random sequence that is correct length', function(){
+			var length = 12;
+
+			var password = generator.generate({length: length, strict : true});
+
+			assert.equal(password.length, length);
+		});
+		it('should generate strict random sequence that has strictly at least one number', function(){
+			var hasNumber = /[0-9]/;
+
+			var password = generator.generate({length: 12, strict : true, uppercase : false, numbers : true});
+
+			assert.equal(hasNumber.test(password), true);
+		});
+
+		it('should generate strict random sequence that has strictly at least one uppercase letter', function(){
+			var hasNumber = /[A-Z]/;
+
+			var password = generator.generate({length: 12, strict : true, uppercase : true});
+
+			assert.equal(hasNumber.test(password), true);
+		});
+
+		it('should generate strict random sequence that has strictly at least one special symbol', function(){
+			var hasNumber = /(!|@|#|\$|%|\^|&|\*|\(|\)|\+|_|\-|=|}|\{|\[|]|\||:|;|"|\/|\?|\.|>|<|,|`|~|)/;
+
+			var password = generator.generate({length: 12, strict : true, symbols : true});
+			assert.equal(hasNumber.test(password), true);
+		});
+
+		it('should throw an error if rules don\'t correlate with length', function(){
+			var methodThatThrows = generator.generate.bind(generator, {length: 2, strict : true, symbols : true, numbers : true});
+			assert.throws(methodThatThrows, Error, 'Length should correlate with strict guidelines');
+		});
 	});
 
 	describe('generateMultiple()', function() {
