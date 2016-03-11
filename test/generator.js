@@ -27,6 +27,14 @@ describe('generate-password', function() {
 			assert.equal(hasNumber.test(password), true);
 		});
 
+		it('should generate strict random sequence that has strictly at least one lowercase letter', function(){
+			var hasNumber = /[a-z]/;
+
+			var password = generator.generate({length: 1, strict : true, uppercase : false});
+
+			assert.equal(hasNumber.test(password), true);
+		});
+
 		it('should generate strict random sequence that has strictly at least one uppercase letter', function(){
 			var hasNumber = /[A-Z]/;
 

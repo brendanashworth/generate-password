@@ -48,11 +48,14 @@ self.generate = function(options) {
   var password = '';
 
   if(options.strict){
-    var minStrictLength = (options.numbers ? 1 : 0) + (options.symbols ? 1 : 0) + (options.uppercase ? 1 : 0);
+    var minStrictLength = 1 + (options.numbers ? 1 : 0) + (options.symbols ? 1 : 0) + (options.uppercase ? 1 : 0);
     if(minStrictLength > options.length){
       throw(new Error('Length should correlate with strict guidelines'));
     } else {
       var strictGroup = [];
+
+      strictGroup.push(lowercase[randomNumber(lowercase.length)]);
+
       if (options.uppercase) {
         strictGroup.push(uppercase[randomNumber(uppercase.length)]);
       }
