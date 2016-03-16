@@ -13,17 +13,31 @@ var lowercase = 'abcdefghijklmnopqrstuvwxyz',
   uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
   numbers = '0123456789',
   symbols = '!@#$%^&*()+_-=}{[]|:;"/?.><,`~',
-  similarCharacters = /[ilLI|`oO0]/g;
+  similarCharacters = /[ilLI|`oO0]/g,
+  strictRules = [
+    { name : "lowercase", rule : /[a-z]/ },
+    { name : "uppercase", rule : /[A-Z]/ },
+    { name : "numbers", rule : /[0-9]/ },
+    { name : "symbols", rule : /[!|@#\$%\^&\*\(\)\+_\-=}\{\[]|\||:|;|"|\/|\?|\.|>|<|,|`|~]/ }
+  ];
 
 // Generate a random password.
 self.generate = function(options) {
   // Set defaults.
   if (!options.hasOwnProperty('length')) options.length = 10;
+  if (!options.hasOwnProperty('lowercase')) options.lowercase = true;
   if (!options.hasOwnProperty('numbers')) options.numbers = false;
   if (!options.hasOwnProperty('symbols')) options.symbols = false;
   if (!options.hasOwnProperty('uppercase')) options.uppercase = true;
   if (!options.hasOwnProperty('excludeSimilarCharacters')) options.excludeSimilarCharacters = false;
   if (!options.hasOwnProperty('strict')) options.strict = false;
+
+  if(options.strict){
+    var minStrictLength = 1 + (options.numbers ? 1 : 0) + (options.symbols ? 1 : 0) + (options.uppercase ? 1 : 0);
+    if(minStrictLength > options.length){
+      throw(new Error('Length should correlate with strict guidelines'));
+    }
+  }
 
   // Generate character pool
   var pool = lowercase;
@@ -47,38 +61,21 @@ self.generate = function(options) {
 
   var password = '';
 
+  for (var i = 0; i < options.length; i++) {
+    password += pool[randomNumber(pool.length)];
+  }
+
   if(options.strict){
-    var minStrictLength = 1 + (options.numbers ? 1 : 0) + (options.symbols ? 1 : 0) + (options.uppercase ? 1 : 0);
-    if(minStrictLength > options.length){
-      throw(new Error('Length should correlate with strict guidelines'));
-    } else {
-      var strictGroup = [];
 
-      strictGroup.push(lowercase[randomNumber(lowercase.length)]);
-
-      if (options.uppercase) {
-        strictGroup.push(uppercase[randomNumber(uppercase.length)]);
+    var rulesApply = strictRules.reduce(function(result, rule){
+      if(options[rule.name]){
+        result = rule.rule.test(password);
       }
-      // numbers
-      if (options.numbers) {
-        strictGroup.push(numbers[randomNumber(numbers.length)]);
-      }
-      // symbols
-      if (options.symbols) {
-        strictGroup.push(symbols[randomNumber(symbols.length)]);
-      }
+      return result;
+    }, false);
 
-      for (var j = minStrictLength; j < options.length; j++) {
-        strictGroup.push(pool[randomNumber(pool.length)]);
-      }
-
-      strictGroup.sort(function(){ return randomNumber(2) - 0.5;});
-      password = strictGroup.join('');
-    }
-
-  } else {
-    for (var i = 0; i < options.length; i++) {
-      password += pool[randomNumber(pool.length)];
+    if(!rulesApply){
+      password = self.generate(options);
     }
   }
 
