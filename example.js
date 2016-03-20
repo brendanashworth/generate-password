@@ -1,3 +1,5 @@
+'use strict';
+
 var generator = require('./main');
 
 // Generate one password.

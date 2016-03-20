@@ -1,5 +1,7 @@
-var assert = require('chai').assert,
-	_ = require('underscore');
+'use strict';
+
+var _ = require('underscore'),
+	assert = require('chai').assert;
 
 var generator = require('../main');
 
