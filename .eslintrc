@@ -1,0 +1,43 @@
+{
+    "env": {
+        "node": true
+    },
+    "rules": {
+        "indent": [2, "tab"],
+        "strict": [2, "global"],
+        "quotes": [2, "single"],
+        "no-console": 1,
+        "dot-notation": 1,
+        "eol-last": 1,
+        "camelcase": 1,
+        "no-trailing-spaces": 1,
+        "no-eq-null": 1,
+        "no-extend-native": 1,
+        "no-redeclare": 1,
+        "no-loop-func": 1,
+        "yoda": [1, "never"],
+        "sort-vars": 1,
+        "func-style": [2, "expression"],
+        "new-parens": 2,
+        "no-array-constructor": 2,
+        "no-new-object": 2,
+        "no-spaced-func": 2,
+        "semi-spacing": [2, {"before": false, "after": true}],
+        "no-mixed-spaces-and-tabs": 2,
+        "semi": [2, "always"],
+        "space-infix-ops": 2,
+        "keyword-spacing": 2,
+        "space-unary-ops": [1, { "words": true, "nonwords": false }],
+        "eqeqeq": 2,
+        "curly": [2, "all"],
+        "no-eval": 2,
+        "no-else-return": 2,
+        "no-return-assign": 2,
+        "no-new-wrappers": 2,
+        "comma-dangle": [2, "never"],
+        "no-sparse-arrays": 2,
+        "no-ex-assign": 2,
+        "no-underscore-dangle": 0
+
+    }
+}
