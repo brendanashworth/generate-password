@@ -21,6 +21,49 @@ var lowercase = 'abcdefghijklmnopqrstuvwxyz',
     { name : "symbols", rule : /[!|@#\$%\^&\*\(\)\+_\-=}\{\[]|\||:|;|"|\/|\?|\.|>|<|,|`|~]/ }
   ];
 
+var generate = function(options, pool){
+  var password = '',
+    optionsLength = options.length,
+    poolLength = pool.length;
+
+  for (var i = 0; i < optionsLength; i++) {
+    password += pool[randomNumber(poolLength)];
+  }
+
+  return password;
+};
+
+var reGenerate = function(password, options, pool){
+  var rulesApply = true;
+
+  rulesApply = strictRules.reduce(function(result, rule){
+    if(options[rule.name]){
+      result = result && rule.rule.test(password);
+    }
+    return result;
+  }, rulesApply);
+
+  if(rulesApply){
+    return password;
+  } else {
+    return generate(options, pool);
+  }
+};
+
+var trampoline = function(f){
+  while(f && f instanceof Function){
+    f = f.apply(f.context, f.args);
+  }
+  return f;
+};
+
+var thunk = function(fn){
+  return function(){
+    var args = Array.prototype.slice.apply(arguments);
+    return function(){ return fn.apply(this, args); };
+  };
+};
+
 // Generate a random password.
 self.generate = function(options) {
   // Set defaults.
@@ -59,24 +102,10 @@ self.generate = function(options) {
     pool = pool.replace(similarCharacters, '');
   }
 
-  var password = '';
-
-  for (var i = 0; i < options.length; i++) {
-    password += pool[randomNumber(pool.length)];
-  }
+  var password = generate(options, pool);
 
   if(options.strict){
-
-    var rulesApply = strictRules.reduce(function(result, rule){
-      if(options[rule.name]){
-        result = rule.rule.test(password);
-      }
-      return result;
-    }, false);
-
-    if(!rulesApply){
-      password = self.generate(options);
-    }
+    password = trampoline(thunk(reGenerate)(password, options, pool));
   }
 
   return password;

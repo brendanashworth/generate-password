@@ -22,7 +22,6 @@
     "url": "https://github.com/brendanashworth/generate-password/issues"
   },
   "homepage": "https://github.com/brendanashworth/generate-password",
-  "dependencies": {},
   "devDependencies": {
     "chai": "^1.10.0",
     "mocha": "^2.0.1",
