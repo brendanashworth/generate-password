@@ -25,48 +25,64 @@ describe('generate-password', function() {
 		it('should remove possible similar characters from the sequences', function() {
 			var password = generator.generate({length: 10000, excludeSimilarCharacters: true});
 
-			assert.equal(/[ilLI|`oO0]/.test(password), false);
+			assert.notMatch(password, /[ilLI|`oO0]/, 'password does not contain similar characters');
 		});
 
-		it('should generate strict random sequence that has strictly at least one number', function() {
-			var hasNumber = /[0-9]/;
+		describe('strict mode', function() {
+			// Testing randomly generated passwords and entropy isn't perfect,
+			// thus in order to get a good sample of whether or not a rule
+			// is passing correctly, we generate lots of passwords and check
+			// each individually. If we're seeing spotty tests, this number should
+			// be increased accordingly.
+			var amountToGenerate = 500;
 
-			var password = generator.generate({length: 12, strict: true, uppercase: false, numbers: true});
+			it('should generate strict random sequence that has strictly at least one number', function() {
+				var passwords = generator.generateMultiple(amountToGenerate, {length: 4, strict: true, uppercase: false, numbers: true});
 
-			assert.equal(hasNumber.test(password), true);
-		});
+				passwords.forEach(function(password) {
+					assert.match(password, /[0-9]/, 'password has a number');
+				});
+				assert.equal(passwords.length, amountToGenerate);
+			});
 
-		it('should generate strict random sequence that has strictly at least one lowercase letter', function() {
-			var hasLowerCaseLetters = /[a-z]/;
+			it('should generate strict random sequence that has strictly at least one lowercase letter', function() {
+				var passwords = generator.generateMultiple(amountToGenerate, {length: 4, strict: true, uppercase: false});
 
-			var password = generator.generate({length: 1, strict: true, uppercase: false});
+				passwords.forEach(function(password) {
+					assert.match(password, /[a-z]/, 'password has a lowercase letter');
+				});
+				assert.equal(passwords.length, amountToGenerate);
+			});
 
-			assert.equal(hasLowerCaseLetters.test(password), true);
-		});
+			it('should generate strict random sequence that has strictly at least one uppercase letter', function() {
+				var passwords = generator.generateMultiple(amountToGenerate, {length: 4, strict: true, uppercase: true});
 
-		it('should generate strict random sequence that has strictly at least one uppercase letter', function() {
-			var hasUpperCaseLetters = /[A-Z]/;
+				passwords.forEach(function(password) {
+					assert.match(password, /[A-Z]/, 'password has an uppercase letter');
+				});
+				assert.equal(passwords.length, amountToGenerate);
+			});
 
-			var password = generator.generate({length: 12, strict: true, uppercase: true});
+			it('should generate strict random sequence that has strictly at least one special symbol', function() {
+				var passwords = generator.generateMultiple(amountToGenerate, {length: 4, strict: true, symbols: true});
 
-			assert.equal(hasUpperCaseLetters.test(password), true);
-		});
+				passwords.forEach(function(password) {
+					assert.match(password, /[!@#$%^&*()+_\-=}{[\]|:;"/?.><,`~]/, 'password has a symbol');
+				});
+				assert.equal(passwords.length, amountToGenerate);
+			});
 
-		it('should generate strict random sequence that has strictly at least one special symbol', function() {
-			var hasSymbols = /(!|@|#|\$|%|\^|&|\*|\(|\)|\+|_|\-|=|}|\{|\[|]|\||:|;|"|\/|\?|\.|>|<|,|`|~|)/;
+			it('should throw an error if rules don\'t correlate with length', function() {
+				assert.throws(function() {
+					generator.generate({length: 2, strict: true, symbols: true, numbers: true});
+				}, TypeError, 'Length must correlate with strict guidelines');
+			});
 
-			var password = generator.generate({length: 12, strict: true, symbols: true});
-			assert.equal(hasSymbols.test(password), true);
-		});
-
-		it('should throw an error if rules don\'t correlate with length', function() {
-			var methodThatThrows = generator.generate.bind(generator, {length: 2, strict: true, symbols: true, numbers: true});
-			assert.throws(methodThatThrows, TypeError, 'Length must correlate with strict guidelines');
-		});
-
-		it('should generate short strict passwords without stack overflow', function(){
-			var passwordGen = generator.generate.bind(generator, {length: 4, strict: true, uppercase: true, numbers: true, symbols: true});
-			assert.doesNotThrow(passwordGen, Error);
+			it('should generate short strict passwords without stack overflow', function(){
+				assert.doesNotThrow(function() {
+					generator.generate({length: 4, strict: true, uppercase: true, numbers: true, symbols: true});
+				}, Error);
+			});
 		});
 	});
 
