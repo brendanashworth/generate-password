@@ -4,8 +4,9 @@
   "description": "Easy library for generating unique passwords.",
   "main": "main.js",
   "scripts": {
-    "test": "mocha",
-    "coverage": "sh ./test/coverage.sh"
+    "test": "./node_modules/.bin/mocha",
+    "coverage": "sh ./test/coverage.sh",
+    "lint": "./node_modules/.bin/eslint src test main.js example.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "chai": "^1.10.0",
     "codecov": "^1.0.1",
+    "eslint": "^2.13.1",
     "jscover": "^1.0.0",
     "mocha": "^2.0.1",
     "mocha-lcov-reporter": "^1.2.0",
