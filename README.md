@@ -1,6 +1,6 @@
 Generate Password
 =====
-[![Build Status](https://travis-ci.org/brendanashworth/generate-password.svg?branch=master)](https://travis-ci.org/brendanashworth/generate-password)
+[![Build Status](https://travis-ci.org/brendanashworth/generate-password.svg?branch=master)](https://travis-ci.org/brendanashworth/generate-password) [![codecov](https://codecov.io/gh/brendanashworth/generate-password/branch/master/graph/badge.svg)](https://codecov.io/gh/brendanashworth/generate-password)
 
 [![Generate-Password NPM](https://nodei.co/npm/generate-password.png)](http://npmjs.org/package/generate-password)
 
