@@ -1,51 +1,58 @@
-Generate Password
-=====
-[![Build Status](https://travis-ci.org/brendanashworth/generate-password.svg?branch=master)](https://travis-ci.org/brendanashworth/generate-password) [![codecov](https://codecov.io/gh/brendanashworth/generate-password/branch/master/graph/badge.svg)](https://codecov.io/gh/brendanashworth/generate-password)
+# Generate Password [![Build Status](https://travis-ci.org/brendanashworth/generate-password.svg?branch=master)](https://travis-ci.org/brendanashworth/generate-password) [![codecov](https://codecov.io/gh/brendanashworth/generate-password/branch/master/graph/badge.svg)](https://codecov.io/gh/brendanashworth/generate-password)
 
-[![Generate-Password NPM](https://nodei.co/npm/generate-password.png)](http://npmjs.org/package/generate-password)
+[![Generate-Password NPM](https://nodei.co/npm/generate-password.png?downloads=true&downloadRank=true)](http://npmjs.org/package/generate-password)
 
-> Generate-Password is a (relatively) extensive library for generating random and unique passwords.
+> Generate Password is a (relatively) extensive library for generating random and unique passwords.
 
-### Install
+## Install
 
 ```bash
 $ npm install generate-password --save
 ```
 
-### Usage
-Generate one password.
+## Usage
+
+#### `generate(options)`
+
+Generate one password with the given options. Returns a string.
+
 ```javascript
 var generator = require('generate-password');
 
 var password = generator.generate({
-	length: 15,
+	length: 10,
 	numbers: true
 });
 
-console.log(password); // Your unique password
+// 'uEyMTw32v9'
+console.log(password);
 ```
 
-Bulk generate multiple passwords.
+#### `generateMultiple(amount, options)`
+
+Bulk generate multiple passwords at once, with the same options for all. Returns an array.
+
 ```javascript
 var generator = require('generate-password');
 
-var passwords = generator.generateMultiple(10, {
-	length: 15,
-	symbols: true
+var passwords = generator.generateMultiple(3, {
+	length: 10,
+	uppercase: false
 });
 
-// passwords is an array of 10 passwords now
+// [ 'hnwulsekqn', 'qlioullgew', 'kosxwabgjv' ]
+console.log(passwords);
 ```
 
-### Available Options
+### Available options
 Any of these can be passed into the options object for each function.
 
 
-|            Name          |                  Description                | Default Value |
-|--------------------------|---------------------------------------------|---------------|
-| length                   | Integer, length of password.                |       10      |
-| numbers                  | Boolean, put numbers in password.           |     false     |
-| symbols                  | Boolean, put symbols in password.           |     false     |
-| uppercase                | Boolean, use uppercase letters in password. |      true     |
-| excludeSimilarCharacters | Excludes similar chars, like 'i' and 'l'.   |     false     |
-| strict                   | Generated password must include at least one character from each pool. |     false     |
+|            Name          |                  Description                        | Default Value |
+|--------------------------|-----------------------------------------------------|---------------|
+| length                   | Integer, length of password.                        |       10      |
+| numbers                  | Boolean, put numbers in password.                   |     false     |
+| symbols                  | Boolean, put symbols in password.                   |     false     |
+| uppercase                | Boolean, use uppercase letters in password.         |      true     |
+| excludeSimilarCharacters | Boolean, exclude similar chars, like 'i' and 'l'.   |     false     |
+| strict                   | Boolean, password must include at least one character from each pool. |     false     |
