@@ -18,7 +18,7 @@ var lowercase = 'abcdefghijklmnopqrstuvwxyz',
 		{ name: 'lowercase', rule: /[a-z]/ },
 		{ name: 'uppercase', rule: /[A-Z]/ },
 		{ name: 'numbers', rule: /[0-9]/ },
-		{ name: 'symbols', rule: /[!|@#\$%\^&\*\(\)\+_\-=}\{\[]|\||:|;|"|\/|\?|\.|>|<|,|`|~]/ }
+		{ name: 'symbols', rule: /[!@#$%^&*()+_\-=}{[\]|:;"/?.><,`~]/ }
 	];
 
 var generate = function(options, pool) {
@@ -30,38 +30,25 @@ var generate = function(options, pool) {
 		password += pool[randomNumber(poolLength)];
 	}
 
+	if (options.strict) {
+		// Iterate over each rule, checking to see if the password works.
+		var fitsRules = strictRules.reduce(function(result, rule) {
+			// Skip checking the rule if we know it doesn't match.
+			if (result == false) return false;
+
+			// If the option is not checked, ignore it.
+			if (options[rule.name] == false) return result;
+
+			// Run the regex on the password and return whether
+			// or not it matches.
+			return rule.rule.test(password);
+		}, true);
+
+		// If it doesn't fit the rules, generate a new one (recursion).
+		if (!fitsRules) return generate(options, pool);
+	}
+
 	return password;
-};
-
-var reGenerate = function(password, options, pool) {
-	var rulesApply = true;
-
-	rulesApply = strictRules.reduce(function(result, rule) {
-		if (options[rule.name]) {
-			result = result && rule.rule.test(password);
-		}
-		return result;
-	}, rulesApply);
-
-	if (rulesApply) {
-		return password;
-	} else {
-		return generate(options, pool);
-	}
-};
-
-var trampoline = function(f) {
-	while (f && f instanceof Function) {
-		f = f.apply(f.context, f.args);
-	}
-	return f;
-};
-
-var thunk = function(fn) {
-	return function() {
-		var args = Array.prototype.slice.apply(arguments);
-		return function() { return fn.apply(this, args); };
-	};
 };
 
 // Generate a random password.
@@ -102,10 +89,6 @@ self.generate = function(options) {
 	}
 
 	var password = generate(options, pool);
-
-	if (options.strict) {
-		password = trampoline(thunk(reGenerate)(password, options, pool));
-	}
 
 	return password;
 };
