@@ -1,3 +1,4 @@
+/*eslint no-unused-vars: "off"*/
 var generator = require('./main');
 
 // Generate one password.
