@@ -14,7 +14,8 @@ $ npm install generate-password --save
 
 #### `generate(options)`
 
-Generate one password with the given options. Returns a string.
+Generate one password with the given options. If the options parameter is not
+provided, defaults are used (see Available options below).  Returns a string.
 
 ```javascript
 var generator = require('generate-password');
@@ -30,7 +31,9 @@ console.log(password);
 
 #### `generateMultiple(amount, options)`
 
-Bulk generate multiple passwords at once, with the same options for all. Returns an array.
+Bulk generate multiple passwords at once, with the same options for all. If the
+options parameter is not provided, defaults are used (see Available options
+below).  Returns an array.
 
 ```javascript
 var generator = require('generate-password');
