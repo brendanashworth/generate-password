@@ -94,7 +94,7 @@ describe('generate-password', function() {
 	describe('generateMultiple()', function() {
 		it('should accept to be called without the options parameter', function() {
 			assert.doesNotThrow(function () {
-				generator.generateMultiple(1)
+				generator.generateMultiple(1);
 			});
 		});
 		// should give right amount
