@@ -30,7 +30,7 @@ console.log(password);
 
 #### `generateMultiple(amount[, options])`
 
-Bulk generate multiple passwords at once, with the same options for all.  Returns an array.
+Bulk generate multiple passwords at once, with the same options for all. Returns an array.
 
 ```javascript
 var generator = require('generate-password');
