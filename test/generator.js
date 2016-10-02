@@ -6,6 +6,11 @@ var generator = process.env.JSCOV ? require('../src-cov/generate') : require('..
 
 describe('generate-password', function() {
 	describe('generate()', function() {
+		it('should accept to be called without the options parameter', function() {
+			assert.doesNotThrow(function () {
+				generator.generate();
+			});
+		});
 		it('should give password of correct length', function() {
 			var length = 12;
 
@@ -87,11 +92,16 @@ describe('generate-password', function() {
 	});
 
 	describe('generateMultiple()', function() {
+		it('should accept to be called without the options parameter', function() {
+			assert.doesNotThrow(function () {
+				generator.generateMultiple(1);
+			});
+		});
 		// should give right amount
 		it('should give right amount of passwords', function() {
 			var amount = 34;
 
-			var passwords = generator.generateMultiple(amount, {});
+			var passwords = generator.generateMultiple(amount);
 
 			assert.equal(passwords.length, amount);
 		});

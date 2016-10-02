@@ -12,7 +12,7 @@ $ npm install generate-password --save
 
 ## Usage
 
-#### `generate(options)`
+#### `generate([options])`
 
 Generate one password with the given options. Returns a string.
 
@@ -28,7 +28,7 @@ var password = generator.generate({
 console.log(password);
 ```
 
-#### `generateMultiple(amount, options)`
+#### `generateMultiple(amount[, options])`
 
 Bulk generate multiple passwords at once, with the same options for all. Returns an array.
 

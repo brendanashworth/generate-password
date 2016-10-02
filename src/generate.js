@@ -54,6 +54,7 @@ var generate = function(options, pool) {
 // Generate a random password.
 self.generate = function(options) {
 	// Set defaults.
+	options = options || {};
 	if (!options.hasOwnProperty('length')) options.length = 10;
 	if (!options.hasOwnProperty('numbers')) options.numbers = false;
 	if (!options.hasOwnProperty('symbols')) options.symbols = false;
