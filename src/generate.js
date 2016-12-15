@@ -58,6 +58,7 @@ self.generate = function(options) {
 	if (!options.hasOwnProperty('length')) options.length = 10;
 	if (!options.hasOwnProperty('numbers')) options.numbers = false;
 	if (!options.hasOwnProperty('symbols')) options.symbols = false;
+	if (!options.hasOwnProperty('symbolsPool')) options.symbolsPool = null;
 	if (!options.hasOwnProperty('uppercase')) options.uppercase = true;
 	if (!options.hasOwnProperty('excludeSimilarCharacters')) options.excludeSimilarCharacters = false;
 	if (!options.hasOwnProperty('strict')) options.strict = false;
@@ -82,8 +83,13 @@ self.generate = function(options) {
 	}
 	// symbols
 	if (options.symbols) {
-		pool += symbols;
+		if (options.symbolsPool != null) {
+			pool += options.symbolsPool;
+		} else {
+			pool += symbols;
+		}
 	}
+
 	// similar characters
 	if (options.excludeSimilarCharacters) {
 		pool = pool.replace(similarCharacters, '');

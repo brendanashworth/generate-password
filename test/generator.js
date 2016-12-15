@@ -77,6 +77,16 @@ describe('generate-password', function() {
 				assert.equal(passwords.length, amountToGenerate);
 			});
 
+			it('should generate strict random sequence that has strictly at least one special symbol from the new pool', function() {
+				var passwords = generator.generateMultiple(amountToGenerate, {length: 4, strict: true, symbols: true, symbolsPool: '!@#$%^&*()'});
+
+				passwords.forEach(function(password) {
+					assert.match(password, /[!@#$%^&*()]/, 'password has a symbol from the new pool');
+					assert.notMatch(password, /[+_\-=}{[\]|:;"/?.><,`~]/, 'password does not have a symbol from the full pool');
+				});
+				assert.equal(passwords.length, amountToGenerate);
+			});
+
 			it('should throw an error if rules don\'t correlate with length', function() {
 				assert.throws(function() {
 					generator.generate({length: 2, strict: true, symbols: true, numbers: true});
