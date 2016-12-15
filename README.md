@@ -55,4 +55,5 @@ Any of these can be passed into the options object for each function.
 | symbols                  | Boolean, put symbols in password.                   |     false     |
 | uppercase                | Boolean, use uppercase letters in password.         |      true     |
 | excludeSimilarCharacters | Boolean, exclude similar chars, like 'i' and 'l'.   |     false     |
+| exclude                  | String, characters to be excluded from password.    |       ''      |
 | strict                   | Boolean, password must include at least one character from each pool. |     false     |

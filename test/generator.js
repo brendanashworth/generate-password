@@ -77,6 +77,16 @@ describe('generate-password', function() {
 				assert.equal(passwords.length, amountToGenerate);
 			});
 
+			it('should generate strict random sequence that avoids all excluded characters', function() {
+				var passwords = generator.generateMultiple(amountToGenerate, {length: 4, strict: true, symbols: true, exclude: 'abcdefg+_-=}{[]|:;"/?.><,`~'});
+
+				passwords.forEach(function(password) {
+					assert.match(password, /[!@#$%^&*()]/, 'password uses normal symbols');
+					assert.notMatch(password, /[abcdefg+_\-=}{[\]|:;"/?.><,`~]/, 'password avoids excluded characters from the full pool');
+				});
+				assert.equal(passwords.length, amountToGenerate);
+			});
+
 			it('should throw an error if rules don\'t correlate with length', function() {
 				assert.throws(function() {
 					generator.generate({length: 2, strict: true, symbols: true, numbers: true});
