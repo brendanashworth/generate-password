@@ -78,7 +78,7 @@ describe('generate-password', function() {
 			});
 
 			it('should generate strict random sequence that has strictly at least one special symbol from the new pool', function() {
-				var passwords = generator.generateMultiple(amountToGenerate, {length: 4, strict: true, symbols: true, symbolsPool: '!@#$%^&*()'});
+				var passwords = generator.generateMultiple(amountToGenerate, {length: 4, strict: true, symbols: true, symbolsExclusions: '+_\-=}{[\]|:;"/?.><,`~'});
 
 				passwords.forEach(function(password) {
 					assert.match(password, /[!@#$%^&*()]/, 'password has a symbol from the new pool');
