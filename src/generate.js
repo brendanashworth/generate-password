@@ -58,7 +58,7 @@ self.generate = function(options) {
 	if (!options.hasOwnProperty('length')) options.length = 10;
 	if (!options.hasOwnProperty('numbers')) options.numbers = false;
 	if (!options.hasOwnProperty('symbols')) options.symbols = false;
-	if (!options.hasOwnProperty('symbolsExclusions')) options.symbolsExclusions = null;
+	if (!options.hasOwnProperty('excludes')) options.excludes = null;
 	if (!options.hasOwnProperty('uppercase')) options.uppercase = true;
 	if (!options.hasOwnProperty('excludeSimilarCharacters')) options.excludeSimilarCharacters = false;
 	if (!options.hasOwnProperty('strict')) options.strict = false;
@@ -83,19 +83,20 @@ self.generate = function(options) {
 	}
 	// symbols
 	if (options.symbols) {
-		if (options.symbolsExclusions != null) {
-			var i = options.symbolsExclusions.length;
-			while (i--) {
-				symbols = symbols.replace(options.symbolsExclusions[i], '');
-			}
-		}
-
 		pool += symbols;
 	}
 
 	// similar characters
 	if (options.excludeSimilarCharacters) {
 		pool = pool.replace(similarCharacters, '');
+	}
+
+	// excludes characters from the pool
+	if (options.excludes != null) {
+		var i = options.excludes.length;
+		while (i--) {
+			pool = pool.replace(options.excludes[i], '');
+		}
 	}
 
 	var password = generate(options, pool);

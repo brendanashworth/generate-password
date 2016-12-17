@@ -78,11 +78,11 @@ describe('generate-password', function() {
 			});
 
 			it('should generate strict random sequence that has strictly at least one special symbol from the new pool', function() {
-				var passwords = generator.generateMultiple(amountToGenerate, {length: 4, strict: true, symbols: true, symbolsExclusions: '+_\-=}{[\]|:;"/?.><,`~'});
+				var passwords = generator.generateMultiple(amountToGenerate, {length: 4, strict: true, symbols: true, excludes: 'abcdefg+_\-=}{[\]|:;"/?.><,`~'});
 
 				passwords.forEach(function(password) {
 					assert.match(password, /[!@#$%^&*()]/, 'password has a symbol from the new pool');
-					assert.notMatch(password, /[+_\-=}{[\]|:;"/?.><,`~]/, 'password does not have a symbol from the full pool');
+					assert.notMatch(password, /[abcdefg+_\-=}{[\]|:;"/?.><,`~]/, 'password does not have an excluded character from the full pool');
 				});
 				assert.equal(passwords.length, amountToGenerate);
 			});
