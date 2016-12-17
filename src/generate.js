@@ -88,11 +88,9 @@ self.generate = function(options) {
 			while (i--) {
 				symbols = symbols.replace(options.symbolsExclusions[i], '');
 			}
-
-			pool += symbols;
-		} else {
-			pool += symbols;
 		}
+
+		pool += symbols;
 	}
 
 	// similar characters
