@@ -1,3 +1,17 @@
+# 1.3.0 / 2016-12-28
+Release with two new features.
+
+One can now pass `{ 'exclude': 'abc' }` to exclude various characters from password
+generation. This can be used to blacklist certain symbols, remove alike characters,
+etc by giving a string with all the characters to be removed.
+
+The options parameter is now optional — it is now unnecessary to pass an empty object
+when the defaults are desired.
+
+#### Notable Changes
+- [`38d4ae0b8`](https://github.com/brendanashworth/generate-password/commit/38d4ae0b8d27db7f3fef897db30143aedc530f1f) - add `exclude` option to restrict passwords (Michael Kimpton)
+- [`d16c95369`](https://github.com/brendanashworth/generate-password/commit/d16c9536914df599751589f6721ec506cdfbd95c) - Accept generate() when called without the options parameter (Alexandre Perrin)
+
 # 1.2.0 / 2016-9-25
 Release with a new feature and various improvements.
 
