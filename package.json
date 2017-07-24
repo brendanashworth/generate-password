@@ -3,6 +3,7 @@
   "version": "1.3.0",
   "description": "Easy library for generating unique passwords.",
   "main": "main.js",
+  "types": "src/generate.d.ts",
   "scripts": {
     "test": "./node_modules/.bin/mocha",
     "coverage": "sh ./test/coverage.sh",
