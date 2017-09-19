@@ -24,7 +24,9 @@
     "url": "https://github.com/brendanashworth/generate-password/issues"
   },
   "homepage": "https://github.com/brendanashworth/generate-password",
-  "dependencies": {},
+  "dependencies": {
+    "randombytes": "^2.0.5"
+  },
   "devDependencies": {
     "chai": "^1.10.0",
     "codecov": "^1.0.1",
