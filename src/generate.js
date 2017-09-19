@@ -1,11 +1,11 @@
-var crypto = require('crypto');
+var randomBytes = require('randombytes');
 
 var self = module.exports;
 
 // Generates a random number
 var randomNumber = function(max) {
 	// gives a number between 0 (inclusive) and max (exclusive)
-	return crypto.randomBytes(1)[0] % max;
+	return randomBytes(1)[0] % max;
 };
 
 // Possible combinations
