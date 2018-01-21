@@ -1,3 +1,9 @@
+# 1.4.0 / 2018-1-20
+Release that includes TypeScript definitions.
+
+#### Notable Changes
+- [`ef2ded619`](https://github.com/brendanashworth/generate-password/commit/ef2ded6195ef72ee364172d1ff2c4d107ffe2821) - typescript definition file (Carlos Gonzales)
+
 # 1.3.0 / 2016-12-28
 Release with two new features.
 
