@@ -1,3 +1,9 @@
+# 1.4.1 / 2018-10-28
+Bug fix to `randomNumber()` function that reduced entropy, resulting in a bias towards letters, generally.
+
+#### Notable Changes
+- [`21a12d0fd`](https://github.com/brendanashworth/generate-password/commit/21a12d0fd47c1b8f63a310da052cedf29ba5c00d) - fixed randomNumber's frontwards bias (Starkteetje)
+
 # 1.4.0 / 2018-1-20
 Release that includes TypeScript definitions.
 
