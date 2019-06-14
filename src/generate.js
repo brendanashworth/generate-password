@@ -2,12 +2,29 @@ var crypto = require('crypto');
 
 var self = module.exports;
 
+const RANDOM_BATCH_SIZE = 256;
+
+var randomIndex;
+var randomBytes;
+
+var getNextRandomValue = function() {
+	if (randomIndex === undefined || randomIndex >= randomBytes.length) {
+		randomIndex = 0;
+		randomBytes = crypto.randomBytes(RANDOM_BATCH_SIZE);
+	}
+
+	var result = randomBytes[randomIndex];
+	randomIndex += 1;
+
+	return result;
+};
+
 // Generates a random number
 var randomNumber = function(max) {
 	// gives a number between 0 (inclusive) and max (exclusive)
-	var rand = crypto.randomBytes(1)[0];
+	var rand = getNextRandomValue();
 	while (rand >= 256 - (256 % max)) {
-		rand = crypto.randomBytes(1)[0];
+		rand = getNextRandomValue();
 	}
 	return rand % max;
 };
