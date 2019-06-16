@@ -1,3 +1,9 @@
+# 1.4.2 / 2019-6-16
+Includes a performance improvement in the random number generator.
+
+#### Notable Changes
+- [`ea642553c`](https://github.com/brendanashworth/generate-password/commit/ea642553c5ba327989f36d0b0f2d4e80ff25b45a) - Optimized fetch of random values using cache (Sebastien ROBERT)
+
 # 1.4.1 / 2018-10-28
 Bug fix to `randomNumber()` function that reduced entropy, resulting in a bias towards letters, generally.
 
