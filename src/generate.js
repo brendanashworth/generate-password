@@ -81,6 +81,7 @@ self.generate = function(options) {
 	if (!options.hasOwnProperty('symbols')) options.symbols = false;
 	if (!options.hasOwnProperty('exclude')) options.exclude = '';
 	if (!options.hasOwnProperty('uppercase')) options.uppercase = true;
+	if (!options.hasOwnProperty('lowercase')) options.lowercase = true;
 	if (!options.hasOwnProperty('excludeSimilarCharacters')) options.excludeSimilarCharacters = false;
 	if (!options.hasOwnProperty('strict')) options.strict = false;
 
@@ -92,7 +93,12 @@ self.generate = function(options) {
 	}
 
 	// Generate character pool
-	var pool = lowercase;
+	var pool = "";
+
+	// lowercase
+	if (options.lowercase) {
+		pool += lowercase
+	}
 
 	// uppercase
 	if (options.uppercase) {
