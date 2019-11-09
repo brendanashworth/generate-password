@@ -91,7 +91,7 @@ describe('generate-password', function() {
 				var passwords = generator.generateMultiple(amountToGenerate, { length: 10, strict: true, lowercase: false });
 
 				passwords.forEach(function (password) {
-					assert.notMatch(password, /[a-z]/, 'password has a lowercase letter');
+					assert.notMatch(password, /[a-z]/, 'password has no lowercase letters');
 				});
 				assert.equal(passwords.length, amountToGenerate);
 			});
