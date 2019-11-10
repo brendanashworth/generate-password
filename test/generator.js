@@ -114,6 +114,12 @@ describe('generate-password', function() {
 				}, TypeError, 'Length must correlate with strict guidelines');
 			});
 
+			it('should throw an error if no rules are applied', function() {
+				assert.throws(function() {
+					generator.generate({ length: 10,  uppercase: false, lowercase: false, symbols: false, numbers: false });
+				}, TypeError, 'At least one rule for pools must be true');
+			});
+
 			it('should generate short strict passwords without stack overflow', function(){
 				assert.doesNotThrow(function() {
 					generator.generate({length: 4, strict: true, uppercase: true, numbers: true, symbols: true});

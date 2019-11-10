@@ -113,6 +113,11 @@ self.generate = function(options) {
 		pool += symbols;
 	}
 
+	// Throw error if pool is empty.
+	if (!pool) {
+		throw new TypeError('At least one rule for pools must be true');
+	}
+
 	// similar characters
 	if (options.excludeSimilarCharacters) {
 		pool = pool.replace(similarCharacters, '');
