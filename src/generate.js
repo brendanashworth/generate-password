@@ -53,17 +53,14 @@ var generate = function(options, pool) {
 
 	if (options.strict) {
 		// Iterate over each rule, checking to see if the password works.
-		var fitsRules = strictRules.reduce(function(result, rule) {
-			// Skip checking the rule if we know it doesn't match.
-			if (result == false) return false;
-
+		var fitsRules = strictRules.every(function(rule) {
 			// If the option is not checked, ignore it.
-			if (options[rule.name] == false) return result;
+			if (options[rule.name] == false) return true;
 
 			// Run the regex on the password and return whether
 			// or not it matches.
 			return rule.rule.test(password);
-		}, true);
+		});
 
 		// If it doesn't fit the rules, generate a new one (recursion).
 		if (!fitsRules) return generate(options, pool);
