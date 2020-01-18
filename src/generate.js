@@ -76,14 +76,14 @@ var generate = function(options, pool) {
 self.generate = function(options) {
 	// Set defaults.
 	options = options || {};
-	if (!options.hasOwnProperty('length')) options.length = 10;
-	if (!options.hasOwnProperty('numbers')) options.numbers = false;
-	if (!options.hasOwnProperty('symbols')) options.symbols = false;
-	if (!options.hasOwnProperty('exclude')) options.exclude = '';
-	if (!options.hasOwnProperty('uppercase')) options.uppercase = true;
-	if (!options.hasOwnProperty('lowercase')) options.lowercase = true;
-	if (!options.hasOwnProperty('excludeSimilarCharacters')) options.excludeSimilarCharacters = false;
-	if (!options.hasOwnProperty('strict')) options.strict = false;
+	if (!Object.prototype.hasOwnProperty.call(options, 'length')) options.length = 10;
+	if (!Object.prototype.hasOwnProperty.call(options, 'numbers')) options.numbers = false;
+	if (!Object.prototype.hasOwnProperty.call(options, 'symbols')) options.symbols = false;
+	if (!Object.prototype.hasOwnProperty.call(options, 'exclude')) options.exclude = '';
+	if (!Object.prototype.hasOwnProperty.call(options, 'uppercase')) options.uppercase = true;
+	if (!Object.prototype.hasOwnProperty.call(options, 'lowercase')) options.lowercase = true;
+	if (!Object.prototype.hasOwnProperty.call(options, 'excludeSimilarCharacters')) options.excludeSimilarCharacters = false;
+	if (!Object.prototype.hasOwnProperty.call(options, 'strict')) options.strict = false;
 
 	if (options.strict) {
 		var minStrictLength = 1 + (options.numbers ? 1 : 0) + (options.symbols ? 1 : 0) + (options.uppercase ? 1 : 0);
@@ -93,11 +93,11 @@ self.generate = function(options) {
 	}
 
 	// Generate character pool
-	var pool = "";
+	var pool = '';
 
 	// lowercase
 	if (options.lowercase) {
-		pool += lowercase
+		pool += lowercase;
 	}
 
 	// uppercase
