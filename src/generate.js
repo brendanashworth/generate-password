@@ -93,11 +93,11 @@ self.generate = function(options) {
 	}
 
 	// Generate character pool
-	var pool = "";
+	var pool = '';
 
 	// lowercase
 	if (options.lowercase) {
-		pool += lowercase
+		pool += lowercase;
 	}
 
 	// uppercase
