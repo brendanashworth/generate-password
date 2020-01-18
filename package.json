@@ -29,7 +29,7 @@
   "devDependencies": {
     "chai": "^1.10.0",
     "codecov": "^1.0.1",
-    "eslint": "^6.5.1",
+    "eslint": "^4.18.2",
     "jscover": "^1.0.0",
     "mocha": "^2.0.1",
     "mocha-lcov-reporter": "^1.2.0",
