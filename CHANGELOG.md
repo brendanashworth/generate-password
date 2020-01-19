@@ -1,3 +1,9 @@
+# 1.5.0 / 2020-1-18
+Add option to disable lowercase characters in generated passwords.
+
+#### Notable Changes
+- [`960858c1c`](https://github.com/brendanashworth/generate-password/commit/960858c1cc7784b259c7d403ab5e26da7f5f32c0) - Document usage of lowercase, make lowercase optional, add tests (Edgardo Carreras)
+
 # 1.4.2 / 2019-6-16
 Includes a performance improvement in the random number generator.
 
