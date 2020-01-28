@@ -2,6 +2,7 @@ interface Options {
   length?: number
   numbers?: boolean
   symbols?: boolean
+  lowercase?: boolean
   uppercase?: boolean
   excludeSimilarCharacters?: boolean
   exclude?: string
