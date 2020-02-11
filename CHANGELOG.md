@@ -1,3 +1,9 @@
+# 1.5.1 / 2020-2-10
+Add lowercase option to TypeScript file.
+
+#### Notable Changes
+- [`0eb0f498b`](https://github.com/brendanashworth/generate-password/commit/0eb0f498be34d98c72dd78d4423f9980ca83878a) - Add lowercase property into Options (Sunjoong Kim)
+
 # 1.5.0 / 2020-1-18
 Add option to disable lowercase characters in generated passwords.
 
