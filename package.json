@@ -28,7 +28,7 @@
   "dependencies": {},
   "devDependencies": {
     "chai": "^1.10.0",
-    "codecov": "^1.0.1",
+    "codecov": "^3.6.5",
     "eslint": "^6.5.1",
     "jscover": "^1.0.0",
     "mocha": "^7.0.0",
