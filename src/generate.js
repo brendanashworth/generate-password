@@ -57,6 +57,13 @@ var generate = function(options, pool) {
 			// If the option is not checked, ignore it.
 			if (options[rule.name] == false) return true;
 
+			// Treat symbol differently if explicit string is provided
+			if (rule.name === 'symbols' && typeof options[rule.name] === 'string') {
+				// Create a regular expression from the provided symbols
+				var re = new RegExp("["+options[rule.name]+"]");
+				return re.test(password);
+			};
+
 			// Run the regex on the password and return whether
 			// or not it matches.
 			return rule.rule.test(password);
@@ -107,7 +114,11 @@ self.generate = function(options) {
 	}
 	// symbols
 	if (options.symbols) {
-		pool += symbols;
+		if (typeof options.symbols === "string") {
+			pool += options.symbols;
+		} else {
+			pool += symbols;
+		}
 	}
 
 	// Throw error if pool is empty.
