@@ -7,7 +7,7 @@ const RANDOM_BATCH_SIZE = 256;
 var randomIndex;
 var randomBytes;
 
-var getNextRandomValue = function() {
+var getNextRandomValue = function () {
 	if (randomIndex === undefined || randomIndex >= randomBytes.length) {
 		randomIndex = 0;
 		randomBytes = crypto.randomBytes(RANDOM_BATCH_SIZE);
@@ -20,7 +20,7 @@ var getNextRandomValue = function() {
 };
 
 // Generates a random number
-var randomNumber = function(max) {
+var randomNumber = function (max) {
 	// gives a number between 0 (inclusive) and max (exclusive)
 	var rand = getNextRandomValue();
 	while (rand >= 256 - (256 % max)) {
@@ -42,7 +42,27 @@ var lowercase = 'abcdefghijklmnopqrstuvwxyz',
 		{ name: 'symbols', rule: /[!@#$%^&*()+_\-=}{[\]|:;"/?.><,`~]/ }
 	];
 
-var generate = function(options, pool) {
+// Validate the configuration is possible
+var validConfiguration = function (options, pool) {
+	if (!options.strict) return true;
+
+	return fitsRules(options, pool);
+};
+
+// Determine if string matches each rule
+var fitsRules = function (options, string) {
+	// Iterate over each rule, checking to see if the password works.
+	return strictRules.every(function (rule) {
+		// If the option is not checked, ignore it.
+		if (!options[rule.name]) return true;
+
+		// Run the regex on the password and return whether
+		// or not it matches.
+		return rule.rule.test(string);
+	});
+}
+
+var generate = function (options, pool) {
 	var password = '',
 		optionsLength = options.length,
 		poolLength = pool.length;
@@ -52,32 +72,15 @@ var generate = function(options, pool) {
 	}
 
 	if (options.strict) {
-		// Iterate over each rule, checking to see if the password works.
-		var fitsRules = strictRules.every(function(rule) {
-			// If the option is not checked, ignore it.
-			if (options[rule.name] == false) return true;
-
-			// Treat symbol differently if explicit string is provided
-			if (rule.name === 'symbols' && typeof options[rule.name] === 'string') {
-				// Create a regular expression from the provided symbols
-				var re = new RegExp("["+options[rule.name]+"]");
-				return re.test(password);
-			};
-
-			// Run the regex on the password and return whether
-			// or not it matches.
-			return rule.rule.test(password);
-		});
-
 		// If it doesn't fit the rules, generate a new one (recursion).
-		if (!fitsRules) return generate(options, pool);
+		if (!fitsRules(options, password)) return generate(options, pool);
 	}
 
 	return password;
 };
 
 // Generate a random password.
-self.generate = function(options) {
+self.generate = function (options) {
 	// Set defaults.
 	options = options || {};
 	if (!Object.prototype.hasOwnProperty.call(options, 'length')) options.length = 10;
@@ -137,13 +140,17 @@ self.generate = function(options) {
 		pool = pool.replace(options.exclude[i], '');
 	}
 
+	if (!validConfiguration(options, pool)) {
+		throw new TypeError('Configuration not possible');
+	}
+
 	var password = generate(options, pool);
 
 	return password;
 };
 
 // Generates multiple passwords at once with the same options.
-self.generateMultiple = function(amount, options) {
+self.generateMultiple = function (amount, options) {
 	var passwords = [];
 
 	for (var i = 0; i < amount; i++) {
