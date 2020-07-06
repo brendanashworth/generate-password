@@ -108,9 +108,20 @@ describe('generate-password', function () {
 				assert.equal(passwords.length, amountToGenerate);
 			});
 
-			it('should throw an error if rules don\'t correlate with length', function () {
-				assert.throws(function () {
-					generator.generate({ length: 2, strict: true, symbols: true, numbers: true });
+
+			it('should respect explicit list of symbols when provided', function() {
+				var passwords = generator.generateMultiple(amountToGenerate, { length: 10, strict: true, symbols: "!", lowercase: true });
+
+				passwords.forEach(function (password) {
+					assert.notMatch(password, /[@#$%^&*()+_\-=}{[\]|:;"/?.><,`~]/, 'password does not have default symbols');
+					assert.match(password, /[!]/, 'password has provided symbol');
+				});
+				assert.equal(passwords.length, amountToGenerate);
+			});
+
+			it('should throw an error if rules don\'t correlate with length', function() {
+				assert.throws(function() {
+					generator.generate({length: 2, strict: true, symbols: true, numbers: true});
 				}, TypeError, 'Length must correlate with strict guidelines');
 			});
 
