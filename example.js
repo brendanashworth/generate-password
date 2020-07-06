@@ -10,6 +10,15 @@ var password = generator.generate({
 	strict: true // defaults to false
 });
 
+// Generate one password with provided list of symbols.
+var password = generator.generate({
+	length: 15, // defaults to 10
+	numbers: true, // defaults to false
+	symbols: "!@#$%&*", // defaults to false
+	uppercase: true, // defaults to true
+	strict: true // defaults to false
+});
+
 // Generate ten bulk.
 var passwords = generator.generateMultiple(10, {
 	length: 15,
