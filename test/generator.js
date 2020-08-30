@@ -1,8 +1,30 @@
-var assert = require('chai').assert,
-	_ = require('underscore');
+var chai = require('chai'),
+	spies = require('chai-spies'),
+	_ = require('underscore'),
+	crypto = require('crypto');
+
+chai.use(spies);
+var assert = chai.assert;
+const sandbox = chai.spy.sandbox()
 
 // We use a different require path for code coverage.
 var generator = process.env.JSCOV ? require('../src-cov/generate') : require('../main');
+
+// Tests with spies should go before
+describe('generate-password with spy', function() {
+	describe('generate()', function() {
+		beforeEach(() => sandbox.on(crypto, 'randomBytes', () => Buffer.from([26,0,0,0,26])));
+		afterEach(() => sandbox.restore());
+		it('should have more than two same characters next to each other', () => {
+			var password = generator.generate();
+			assert.equal(password, 'AaaaAAaaaA');
+		});
+		it('should not have more than two same characters next to each other', () => {
+			var password = generator.generate({strict: true});
+			assert.equal(password, 'AaaAAaaAAa');
+		});
+	})
+});
 
 describe('generate-password', function() {
 	describe('generate()', function() {

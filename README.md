@@ -56,6 +56,6 @@ Any of these can be passed into the options object for each function.
 | uppercase*               | Boolean, use uppercase letters in password.         |      true     |
 | excludeSimilarCharacters | Boolean, exclude similar chars, like 'i' and 'l'.   |     false     |
 | exclude                  | String, characters to be excluded from password.    |       ''      |
-| strict                   | Boolean, password must include at least one character from each pool. |     false     |
+| strict                   | Boolean, password must include at least one character from each pool and no more than two identical charactes in a row. |     false     |
 
 *At least one should be true.

@@ -28,6 +28,7 @@
   "dependencies": {},
   "devDependencies": {
     "chai": "^1.10.0",
+    "chai-spies": "^1.0.0",
     "codecov": "^1.0.1",
     "eslint": "^6.5.1",
     "jscover": "^1.0.0",

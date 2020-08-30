@@ -45,13 +45,22 @@ var lowercase = 'abcdefghijklmnopqrstuvwxyz',
 var generate = function(options, pool) {
 	var password = '',
 		optionsLength = options.length,
-		poolLength = pool.length;
+		optionsStrict = options.strict,
+		poolLength = pool.length,
+		char;
 
-	for (var i = 0; i < optionsLength; i++) {
-		password += pool[randomNumber(poolLength)];
+	// if number of iterations exeed 3x (arbitrary) of needed length gave attempt up
+	for (var i = 0; password.length < optionsLength || i > 3 * optionsLength ; i++) {
+		var nextChar = pool[randomNumber(poolLength)];
+		// to avoid three repeated charactes in the row
+		var prevChar = password.slice(-2, -1);
+		if (optionsStrict && (nextChar !== prevChar) || !optionsStrict) {
+			password += nextChar;
+			char = nextChar;
+		}
 	}
 
-	if (options.strict) {
+	if (optionsStrict) {
 		// Iterate over each rule, checking to see if the password works.
 		var fitsRules = strictRules.every(function(rule) {
 			// If the option is not checked, ignore it.
