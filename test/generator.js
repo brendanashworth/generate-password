@@ -7,7 +7,7 @@ var generator = process.env.JSCOV ? require('../src-cov/generate') : require('..
 describe('generate-password', function() {
 	describe('generate()', function() {
 		it('should accept to be called without the options parameter', function() {
-			assert.doesNotThrow(function() {
+			assert.doesNotThrow(function () {
 				generator.generate();
 			});
 		});
@@ -87,19 +87,19 @@ describe('generate-password', function() {
 				assert.equal(passwords.length, amountToGenerate);
 			});
 
-			it('should generate strict random sequence that has has no lowercase letter', function() {
-				var passwords = generator.generateMultiple(amountToGenerate, {length: 10, strict: true, lowercase: false});
+			it('should generate strict random sequence that has has no lowercase letter', function () {
+				var passwords = generator.generateMultiple(amountToGenerate, { length: 10, strict: true, lowercase: false });
 
-				passwords.forEach(function(password) {
+				passwords.forEach(function (password) {
 					assert.notMatch(password, /[a-z]/, 'password has no lowercase letters');
 				});
 				assert.equal(passwords.length, amountToGenerate);
 			});
 
-			it('should generate strict random sequence that has strictly at least one lowercase, one symbol, and one uppercase letter', function() {
-				var passwords = generator.generateMultiple(amountToGenerate, {length: 10, strict: true, uppercase: true, lowercase: true, symbols: true, numbers: true});
+			it('should generate strict random sequence that has strictly at least one lowercase, one symbol, and one uppercase letter', function () {
+				var passwords = generator.generateMultiple(amountToGenerate, { length: 10, strict: true, uppercase: true, lowercase: true, symbols: true, numbers: true });
 
-				passwords.forEach(function(password) {
+				passwords.forEach(function (password) {
 					assert.match(password, /[a-z]/, 'password has a lowercase letter');
 					assert.match(password, /[A-Z]/, 'password has a uppercase letter');
 					assert.match(password, /[!@#$%^&*()+_\-=}{[\]|:;"/?.><,`~]/, 'password has a symbol');
@@ -108,10 +108,10 @@ describe('generate-password', function() {
 				assert.equal(passwords.length, amountToGenerate);
 			});
 
-			it('should respect explicit list of symbols when provided', function() {
-				var passwords = generator.generateMultiple(amountToGenerate, {length: 10, strict: true, symbols: "!", lowercase: true});
+			it('should respect explicit list of symbols when provided', function () {
+				var passwords = generator.generateMultiple(amountToGenerate, { length: 10, strict: true, symbols: '!', lowercase: true });
 
-				passwords.forEach(function(password) {
+				passwords.forEach(function (password) {
 					assert.notMatch(password, /[@#$%^&*()+_\-=}{[\]|:;"/?.><,`~]/, 'password does not have default symbols');
 					assert.match(password, /[!]/, 'password has provided symbol');
 				});
@@ -126,11 +126,11 @@ describe('generate-password', function() {
 
 			it('should throw an error if no rules are applied', function() {
 				assert.throws(function() {
-					generator.generate({length: 10, uppercase: false, lowercase: false, symbols: false, numbers: false});
+					generator.generate({ length: 10, uppercase: false, lowercase: false, symbols: false, numbers: false });
 				}, TypeError, 'At least one rule for pools must be true');
 			});
 
-			it('should generate short strict passwords without stack overflow', function() {
+			it('should generate short strict passwords without stack overflow', function(){
 				assert.doesNotThrow(function() {
 					generator.generate({length: 4, strict: true, uppercase: true, numbers: true, symbols: true});
 				}, Error);
@@ -167,7 +167,7 @@ describe('generate-password', function() {
 
 	describe('generateMultiple()', function() {
 		it('should accept to be called without the options parameter', function() {
-			assert.doesNotThrow(function() {
+			assert.doesNotThrow(function () {
 				generator.generateMultiple(1);
 			});
 		});

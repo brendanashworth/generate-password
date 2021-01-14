@@ -117,7 +117,7 @@ self.generate = function(options) {
 	}
 	// symbols
 	if (options.symbols) {
-		if (typeof options.symbols === "string") {
+		if (typeof options.symbols === 'string') {
 			pool += options.symbols;
 		} else {
 			pool += symbols;
