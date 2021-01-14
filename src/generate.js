@@ -7,7 +7,7 @@ const RANDOM_BATCH_SIZE = 256;
 var randomIndex;
 var randomBytes;
 
-var getNextRandomValue = function () {
+var getNextRandomValue = function() {
 	if (randomIndex === undefined || randomIndex >= randomBytes.length) {
 		randomIndex = 0;
 		randomBytes = crypto.randomBytes(RANDOM_BATCH_SIZE);
@@ -20,7 +20,7 @@ var getNextRandomValue = function () {
 };
 
 // Generates a random number
-var randomNumber = function (max) {
+var randomNumber = function(max) {
 	// gives a number between 0 (inclusive) and max (exclusive)
 	var rand = getNextRandomValue();
 	while (rand >= 256 - (256 % max)) {
@@ -43,16 +43,16 @@ var lowercase = 'abcdefghijklmnopqrstuvwxyz',
 	];
 
 // Validate the configuration is possible
-var validConfiguration = function (options, pool) {
+var validConfiguration = function(options, pool) {
 	if (!options.strict) return true;
 
 	return fitsRules(options, pool);
 };
 
 // Determine if string matches each rule
-var fitsRules = function (options, string) {
+var fitsRules = function(options, string) {
 	// Iterate over each rule, checking to see if the password works.
-	return strictRules.every(function (rule) {
+	return strictRules.every(function(rule) {
 		// If the option is not checked, ignore it.
 		if (!options[rule.name]) return true;
 
@@ -62,7 +62,7 @@ var fitsRules = function (options, string) {
 	});
 }
 
-var generate = function (options, pool) {
+var generate = function(options, pool) {
 	var password = '',
 		optionsLength = options.length,
 		poolLength = pool.length;
@@ -80,7 +80,7 @@ var generate = function (options, pool) {
 };
 
 // Generate a random password.
-self.generate = function (options) {
+self.generate = function(options) {
 	// Set defaults.
 	options = options || {};
 	if (!Object.prototype.hasOwnProperty.call(options, 'length')) options.length = 10;
@@ -150,7 +150,7 @@ self.generate = function (options) {
 };
 
 // Generates multiple passwords at once with the same options.
-self.generateMultiple = function (amount, options) {
+self.generateMultiple = function(amount, options) {
 	var passwords = [];
 
 	for (var i = 0; i < amount; i++) {
