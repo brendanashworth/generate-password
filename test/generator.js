@@ -108,7 +108,7 @@ describe('generate-password', function() {
 				assert.equal(passwords.length, amountToGenerate);
 			});
 
-			it('should respect explicit list of symbols when provided', function () {
+			it('should respect explicit list of symbols when provided', function() {
 				var passwords = generator.generateMultiple(amountToGenerate, { length: 10, strict: true, symbols: '!', lowercase: true });
 
 				passwords.forEach(function (password) {
@@ -126,7 +126,7 @@ describe('generate-password', function() {
 
 			it('should throw an error if no rules are applied', function() {
 				assert.throws(function() {
-					generator.generate({ length: 10, uppercase: false, lowercase: false, symbols: false, numbers: false });
+					generator.generate({ length: 10,  uppercase: false, lowercase: false, symbols: false, numbers: false });
 				}, TypeError, 'At least one rule for pools must be true');
 			});
 
