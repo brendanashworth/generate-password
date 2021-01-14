@@ -109,7 +109,7 @@ describe('generate-password', function() {
 			});
 
 			it('should respect explicit list of symbols when provided', function() {
-				var passwords = generator.generateMultiple(amountToGenerate, { length: 10, strict: true, symbols: "!", lowercase: true });
+				var passwords = generator.generateMultiple(amountToGenerate, { length: 10, strict: true, symbols: '!', lowercase: true });
 
 				passwords.forEach(function (password) {
 					assert.notMatch(password, /[@#$%^&*()+_\-=}{[\]|:;"/?.><,`~]/, 'password does not have default symbols');

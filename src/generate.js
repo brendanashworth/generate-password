@@ -60,9 +60,9 @@ var generate = function(options, pool) {
 			// Treat symbol differently if explicit string is provided
 			if (rule.name === 'symbols' && typeof options[rule.name] === 'string') {
 				// Create a regular expression from the provided symbols
-				var re = new RegExp("["+options[rule.name]+"]");
+				var re = new RegExp('['+options[rule.name]+']');
 				return re.test(password);
-			};
+			}
 
 			// Run the regex on the password and return whether
 			// or not it matches.
@@ -114,7 +114,7 @@ self.generate = function(options) {
 	}
 	// symbols
 	if (options.symbols) {
-		if (typeof options.symbols === "string") {
+		if (typeof options.symbols === 'string') {
 			pool += options.symbols;
 		} else {
 			pool += symbols;
