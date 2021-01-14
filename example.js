@@ -11,10 +11,10 @@ var password = generator.generate({
 });
 
 // Generate one password with provided list of symbols.
-var password = generator.generate({
+password = generator.generate({
 	length: 15, // defaults to 10
 	numbers: true, // defaults to false
-	symbols: "!@#$%&*", // defaults to false
+	symbols: '!@#$%&*', // defaults to false
 	uppercase: true, // defaults to true
 	strict: true // defaults to false
 });
