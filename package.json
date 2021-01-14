@@ -27,7 +27,7 @@
   "homepage": "https://github.com/brendanashworth/generate-password",
   "devDependencies": {
     "chai": "^1.10.0",
-    "codecov": "^1.0.1",
+    "codecov": "^3.7.1",
     "eslint": "^6.5.1",
     "jscover": "^0.1.1",
     "mocha": "^7.0.0",
