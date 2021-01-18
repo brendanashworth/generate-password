@@ -10,10 +10,10 @@ export interface GenerateOptions {
      */
     numbers?: boolean;
     /**
-     * Should the password include symbols
+     * Should the password include symbols, or symbols to include
      * @default false
      */
-    symbols?: boolean;
+    symbols?: boolean | string;
     /**
      * Should the password include lowercase characters
      * @default true
