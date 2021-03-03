@@ -1,3 +1,10 @@
+# 1.6.0 / 2021-1-14
+Add specifying a list of symbols to substitute defaults.
+
+#### Notable Changes
+- [`f0db9f29d`](https://github.com/brendanashworth/generate-password/commit/f0db9f29d932162a6cb2d24e98297d987c1ae6d9) -  respect list of symbols (Dillon Streator)
+- [`c1946ea44`](https://github.com/brendanashworth/generate-password/commit/c1946ea444cb632d9b507615312dfa08ef908902) -  feat: Add jsdoc to ts types and export Options interface (Eddie CooRo)
+
 # 1.5.1 / 2020-2-10
 Add lowercase option to TypeScript file.
 
