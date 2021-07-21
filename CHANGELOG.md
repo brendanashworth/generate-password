@@ -1,3 +1,9 @@
+# 1.6.1 / 2021-7-21
+Fix TypeScript documentation to include string for symbols.
+
+#### Notable Changes
+- [`d95f213dd`](https://github.com/brendanashworth/generate-password/commit/d95f213dd27a397f9e1db6f44f180421cef09eb1) -  Added string type to symbols option (Bart in 't Veld)
+
 # 1.6.0 / 2021-1-14
 Add specifying a list of symbols to substitute defaults.
 
