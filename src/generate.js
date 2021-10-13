@@ -78,20 +78,23 @@ var generate = function(options, pool) {
 
 // Generate a random password.
 self.generate = function(options) {
-	// Set defaults.
-	options = options || {};
-	if (!Object.prototype.hasOwnProperty.call(options, 'length')) options.length = 10;
-	if (!Object.prototype.hasOwnProperty.call(options, 'numbers')) options.numbers = false;
-	if (!Object.prototype.hasOwnProperty.call(options, 'symbols')) options.symbols = false;
-	if (!Object.prototype.hasOwnProperty.call(options, 'exclude')) options.exclude = '';
-	if (!Object.prototype.hasOwnProperty.call(options, 'uppercase')) options.uppercase = true;
-	if (!Object.prototype.hasOwnProperty.call(options, 'lowercase')) options.lowercase = true;
-	if (!Object.prototype.hasOwnProperty.call(options, 'excludeSimilarCharacters')) options.excludeSimilarCharacters = false;
-	if (!Object.prototype.hasOwnProperty.call(options, 'strict')) options.strict = false;
 
-	if (options.strict) {
-		var minStrictLength = 1 + (options.numbers ? 1 : 0) + (options.symbols ? 1 : 0) + (options.uppercase ? 1 : 0);
-		if (minStrictLength > options.length) {
+	var innerOptions = {...options};
+
+	// Set defaults.
+	innerOptions = innerOptions || {};
+	if (!Object.prototype.hasOwnProperty.call(innerOptions, 'length')) innerOptions.length = 10;
+	if (!Object.prototype.hasOwnProperty.call(innerOptions, 'numbers')) innerOptions.numbers = false;
+	if (!Object.prototype.hasOwnProperty.call(innerOptions, 'symbols')) innerOptions.symbols = false;
+	if (!Object.prototype.hasOwnProperty.call(innerOptions, 'exclude')) innerOptions.exclude = '';
+	if (!Object.prototype.hasOwnProperty.call(innerOptions, 'uppercase')) innerOptions.uppercase = true;
+	if (!Object.prototype.hasOwnProperty.call(innerOptions, 'lowercase')) innerOptions.lowercase = true;
+	if (!Object.prototype.hasOwnProperty.call(innerOptions, 'excludeSimilarCharacters')) innerOptions.excludeSimilarCharacters = false;
+	if (!Object.prototype.hasOwnProperty.call(innerOptions, 'strict')) innerOptions.strict = false;
+
+	if (innerOptions.strict) {
+		var minStrictLength = 1 + (innerOptions.numbers ? 1 : 0) + (innerOptions.symbols ? 1 : 0) + (innerOptions.uppercase ? 1 : 0);
+		if (minStrictLength > innerOptions.length) {
 			throw new TypeError('Length must correlate with strict guidelines');
 		}
 	}
@@ -100,22 +103,22 @@ self.generate = function(options) {
 	var pool = '';
 
 	// lowercase
-	if (options.lowercase) {
+	if (innerOptions.lowercase) {
 		pool += lowercase;
 	}
 
 	// uppercase
-	if (options.uppercase) {
+	if (innerOptions.uppercase) {
 		pool += uppercase;
 	}
 	// numbers
-	if (options.numbers) {
+	if (innerOptions.numbers) {
 		pool += numbers;
 	}
 	// symbols
-	if (options.symbols) {
-		if (typeof options.symbols === 'string') {
-			pool += options.symbols;
+	if (innerOptions.symbols) {
+		if (typeof innerOptions.symbols === 'string') {
+			pool += innerOptions.symbols;
 		} else {
 			pool += symbols;
 		}
@@ -127,17 +130,17 @@ self.generate = function(options) {
 	}
 
 	// similar characters
-	if (options.excludeSimilarCharacters) {
+	if (innerOptions.excludeSimilarCharacters) {
 		pool = pool.replace(similarCharacters, '');
 	}
 
 	// excludes characters from the pool
-	var i = options.exclude.length;
+	var i = innerOptions.exclude.length;
 	while (i--) {
-		pool = pool.replace(options.exclude[i], '');
+		pool = pool.replace(innerOptions.exclude[i], '');
 	}
 
-	var password = generate(options, pool);
+	var password = generate(innerOptions, pool);
 
 	return password;
 };
@@ -145,9 +148,10 @@ self.generate = function(options) {
 // Generates multiple passwords at once with the same options.
 self.generateMultiple = function(amount, options) {
 	var passwords = [];
+	var innerOptions = {...options};
 
 	for (var i = 0; i < amount; i++) {
-		passwords[i] = self.generate(options);
+		passwords[i] = self.generate(innerOptions);
 	}
 
 	return passwords;
