@@ -1,7 +1,5 @@
 var crypto = require('crypto');
 
-var self = module.exports;
-
 const RANDOM_BATCH_SIZE = 256;
 
 var randomIndex;
@@ -77,7 +75,7 @@ var generate = function(options, pool) {
 };
 
 // Generate a random password.
-self.generate = function(options) {
+module.exports.generate = function(options) {
 	// Set defaults.
 	options = options || {};
 	if (!Object.prototype.hasOwnProperty.call(options, 'length')) options.length = 10;
@@ -143,11 +141,11 @@ self.generate = function(options) {
 };
 
 // Generates multiple passwords at once with the same options.
-self.generateMultiple = function(amount, options) {
+module.exports.generateMultiple = function(amount, options) {
 	var passwords = [];
 
 	for (var i = 0; i < amount; i++) {
-		passwords[i] = self.generate(options);
+		passwords[i] = module.exports.generate(options);
 	}
 
 	return passwords;
