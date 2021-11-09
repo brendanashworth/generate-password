@@ -1,3 +1,9 @@
+# 1.7.0 / 2021-9-9
+Support for named exports
+
+#### Notable Changes
+- [`b8c61418`](https://github.com/brendanashworth/generate-password/commit/b8c61418d69c8c90870250ef7562f34cdbe5e749) - Add support for named exports (Julian Grinblat)
+
 # 1.6.1 / 2021-7-21
 Fix TypeScript documentation to include string for symbols.
 
