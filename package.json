@@ -1,6 +1,6 @@
 {
   "name": "generate-password",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Easy library for generating unique passwords.",
   "main": "main.js",
   "exports": "./main.js",
@@ -29,10 +29,10 @@
   "devDependencies": {
     "chai": "^1.10.0",
     "codecov": "^3.8.3",
-    "eslint": "^6.5.1",
+    "eslint": "^8.7.0",
     "jscover": "^0.1.1",
-    "mocha": "^7.0.0",
+    "mocha": "^9.2.0",
     "mocha-lcov-reporter": "^1.2.0",
-    "underscore": "^1.7.0"
+    "underscore": "^1.13.1"
   }
 }
