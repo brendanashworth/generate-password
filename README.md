@@ -59,3 +59,6 @@ Any of these can be passed into the options object for each function.
 | strict                   | Boolean, password must include at least one character from each pool. | false         |
 
 *At least one should be true.
+
+### Using this with a browser
+As browsers don't have the "require" method that Node.js does, this module doesn't work in web environments. Instead [generate-password-browser](https://www.npmjs.com/package/generate-password-browser) can be used.
