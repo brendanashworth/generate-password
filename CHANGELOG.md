@@ -1,3 +1,9 @@
+# 1.7.1 / 2023-10-17
+Fix typescript types
+
+#### Notable Changes
+- [`5068595a`](https://github.com/brendanashworth/generate-password/commit/5068595a) - Fix exports for ESM (Luke Stevens)
+
 # 1.7.0 / 2021-9-9
 Support for named exports
 
