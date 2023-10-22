@@ -135,6 +135,33 @@ describe('generate-password', function() {
 					generator.generate({length: 4, strict: true, uppercase: true, numbers: true, symbols: true});
 				}, Error);
 			});
+
+			describe('configuration impossible', function() {
+				it('should error on all numbers excluded but required', function() {
+					assert.throws(function() {
+						generator.generate({ strict: true, numbers: true, exclude: "1234567890"});
+					}, TypeError, 'Configuration not possible');
+				});
+
+				it('should error on all symbols excluded but required', function() {
+					assert.throws(function() {
+						generator.generate({ strict: true, symbols: true, exclude: '!@#$%^&*()+_-=}{[]|:;"/?.><,`~'});
+					}, TypeError, 'Configuration not possible');
+				});
+
+				it('should error on all uppercase excluded but required', function() {
+					assert.throws(function() {
+						generator.generate({ strict: true, uppercase: true, exclude: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'});
+					}, TypeError, 'Configuration not possible');
+				});
+
+				it('should error on all lowercase excluded but required', function() {
+					assert.throws(function() {
+						generator.generate({ strict: true, lowercase: true, exclude: 'abcdefghijklmnopqrstuvwxyz'});
+					}, TypeError, 'Configuration not possible');
+				});
+			});
+
 		});
 	});
 
